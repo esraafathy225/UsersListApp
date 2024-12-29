@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NewRecyclerViewProject</string>
+    <string name="user_app">User App</string>
+    <string name="home">Home</string>
+    <string name="gallery">Gallery</string>
+    <string name="slide_show">Slide Show</string>
+    <string name="my_name">Esraa Fathy</string>
+    <string name="my_email">esraa.fathy@gmail.com</string>
 </resources>

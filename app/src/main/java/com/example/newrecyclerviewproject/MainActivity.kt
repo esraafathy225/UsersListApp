@@ -1,6 +1,7 @@
 package com.example.newrecyclerviewproject
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import com.example.newrecyclerviewproject.databinding.ActivityMainBinding
@@ -32,6 +33,31 @@ class MainActivity : ComponentActivity() {
         val userAdapter = UserAdapter(users)
 
         binding.rvStudents.adapter = userAdapter
+
+        binding.toolbarLayout.toolbar.setNavigationOnClickListener {
+            binding.drawerLayout.open()
+        }
+
+        binding.navigationView.setNavigationItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.home -> {
+                    Toast.makeText(this,R.string.home,Toast.LENGTH_SHORT).show()
+                    binding.drawerLayout.close()
+                    true
+                }
+                R.id.gallery -> {
+                    Toast.makeText(this,R.string.gallery,Toast.LENGTH_SHORT).show()
+                    binding.drawerLayout.close()
+                    true
+                }
+                R.id.slideShow -> {
+                    Toast.makeText(this,R.string.slide_show,Toast.LENGTH_SHORT).show()
+                    binding.drawerLayout.close()
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 }
