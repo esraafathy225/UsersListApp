@@ -2,5 +2,7 @@
 <resources>
 
     <style name="Theme.NewRecyclerViewProject"
-        parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
+        parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" >
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
 </resources>
