@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewRecyclerViewProject</string>
+    <string name="user_app">تطبيق المستخدم</string>
+    <string name="home">الرئيسية</string>
+    <string name="gallery">المعرض</string>
+    <string name="slide_show">عرض الشرائح</string>
+    <string name="my_name">إسراء فتحي</string>
+    <string name="my_email">esraa.fathy@gmail.com</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="settings">الإعدادات</string>
+    <string name="change_lang">تغيير اللغة</string>
+    <string name="search">بحث</string>
+</resources>

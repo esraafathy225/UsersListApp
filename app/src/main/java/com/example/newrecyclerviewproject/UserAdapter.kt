@@ -4,21 +4,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newrecyclerviewproject.databinding.ItemLayoutBinding
 
-class UserAdapter(val users: List<User>)
-    :RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
+class UserAdapter(val users: List<User>) :
+    ListAdapter<User, UserAdapter.UserViewHolder>(UserDiffUtilCallback()) {
 
-    class UserViewHolder(val row:View) : RecyclerView.ViewHolder(row) {
-        //hold views
-        val tvName = row.findViewById<TextView>(R.id.tv_name)
-        val tvEmail = row.findViewById<TextView>(R.id.tv_email)
+    class UserViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_layout,parent,false)
-        return UserViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemLayoutBinding.inflate(layoutInflater, parent, false)
+        return UserViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +29,18 @@ class UserAdapter(val users: List<User>)
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
 
-        holder.tvName.text=user.name
-        holder.tvEmail.text=user.email
+        holder.binding.tvName.text = user.name
+        holder.binding.tvEmail.text = user.email
+    }
+
+
+    class UserDiffUtilCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
     }
 }

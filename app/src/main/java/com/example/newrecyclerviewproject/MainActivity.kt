@@ -1,10 +1,15 @@
 package com.example.newrecyclerviewproject
 
+import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import com.example.newrecyclerviewproject.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
 
@@ -74,7 +79,7 @@ class MainActivity : ComponentActivity() {
                     true
                 }
                 R.id.changeLanguage -> {
-                    Toast.makeText(this,R.string.change_lang, Toast.LENGTH_SHORT).show()
+                    updateLocale(this,"ar")
                     true
                 }
                 else -> false
@@ -104,5 +109,36 @@ class MainActivity : ComponentActivity() {
 
 
     }
+
+    fun updateLocale(context: Context, languageCode: String) {
+
+        // locale  ar  direction
+
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = Configuration()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale)
+            context.createConfigurationContext(config)
+        } else {
+            config.locale = locale
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        }
+
+        // Update layout direction
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLayoutDirection(locale)
+        }
+
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
+
+        //restart activity
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
 
